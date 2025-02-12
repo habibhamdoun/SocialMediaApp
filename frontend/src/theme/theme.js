@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { colors } from '../constants/colors';
+import { colors, styles } from '../constants/colors';
 
 const theme = createTheme({
   palette: {
@@ -21,6 +21,7 @@ const theme = createTheme({
         {
           props: { variant: 'fill' },
           style: {
+            borderRadius: styles.borderRadius,
             backgroundColor: colors.primary,
             color: colors.text,
             boxShadow: `0px 4px 6px ${colors.shadow}`,
@@ -33,6 +34,7 @@ const theme = createTheme({
         {
           props: { variant: 'outlined' },
           style: {
+            borderRadius: styles.borderRadius,
             color: colors.primary,
             boxShadow: `0px 6px 10px ${colors.shadow}`,
             backgroundColor: 'transparent',
