@@ -130,27 +130,56 @@ const LoginForm = () => {
             <Box
               sx={{
                 display: 'flex',
+                justifyContent: 'space-between',
                 alignItems: 'center',
-                justifyContent: 'center',
-                alignSelf: 'flex-start',
-                gap: 1,
+                width: '100%',
               }}
             >
-              <Typography
-                color={colors.black}
-                fontWeight={400}
-                fontSize='0.8rem'
-              >
-                Don{"'"}t have an account?
-              </Typography>
-              <Link
+              <Box
                 sx={{
-                  fontSize: '0.8rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignSelf: 'flex-start',
+                  gap: 1,
                 }}
-                href='/login'
               >
-                Sign up
-              </Link>
+                <Typography
+                  color={colors.black}
+                  fontWeight={400}
+                  fontSize='0.8rem'
+                >
+                  Don{"'"}t have an account?
+                </Typography>
+                <Link
+                  sx={{
+                    fontSize: '0.8rem',
+                    p: 0,
+                  }}
+                  href='/login'
+                >
+                  Sign up
+                </Link>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignSelf: 'flex-end',
+                  gap: 1,
+                }}
+              >
+                <Link
+                  sx={{
+                    fontSize: '0.8rem',
+                    p: 0,
+                  }}
+                  href='/reset-password'
+                >
+                  Forgot Password?
+                </Link>
+              </Box>
             </Box>
             <Tooltip
               title={`The following fields are missing: ${

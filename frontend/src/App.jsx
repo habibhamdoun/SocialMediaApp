@@ -1,12 +1,13 @@
 import './App.css';
+import EmailOtpScreen from './pages/EmailOtpScreen';
 import theme from './theme/theme';
 import { ThemeProvider } from '@mui/material';
-import Signup from './pages/Signup';
+// import Login from './pages/Login';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Signup />
+      <EmailOtpScreen />
     </ThemeProvider>
   );
 }
