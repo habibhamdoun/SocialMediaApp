@@ -1,18 +1,14 @@
 import './App.css';
-import Button from '@mui/material/Button';
+import EmailOtpScreen from './pages/EmailOtpScreen';
 import theme from './theme/theme';
 import { ThemeProvider } from '@mui/material';
+// import Login from './pages/Login';
 
 function App() {
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Button variant='outlined'>Button</Button>
-        <br />
-        <br />
-        <Button variant='fill'>Button</Button>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <EmailOtpScreen />
+    </ThemeProvider>
   );
 }
 
