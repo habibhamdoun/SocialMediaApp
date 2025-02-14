@@ -14,6 +14,8 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.3",
     "@tailwindcss/vite": "^4.0.3",
+    "mui-one-time-password-input": "^3.0.2",
+    "phosphor-react": "^1.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.3"
