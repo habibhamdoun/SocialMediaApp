@@ -4,31 +4,41 @@ import userModel from "../models/userModel.js";
 import transporter from "../config/nodemailer.js";
 
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, username, email, password } = req.body;
+  const profilePicture = req.file ? req.file.path : "";
 
-  if (!name || !email || !password) {
-    return res.json({ success: false, message: "Missing Detials" });
+  if (!name || !username || !email || !password) {
+    return res.json({ success: false, message: "Missing Details" });
   }
 
   try {
-    const existingUser = await userModel.findOne({ email });
-
-    if (existingUser)
+    const existingEmail = await userModel.findOne({ email });
+    if (existingEmail) {
       return res.json({
         success: false,
-        message: "User with this email already exist.Please Login",
+        message: "User with this email already exists. Please Login",
       });
+    }
+
+    const existingUsername = await userModel.findOne({ username });
+    if (existingUsername) {
+      return res.json({
+        success: false,
+        message: "Username is already taken. Please choose another one",
+      });
+    }
 
     const hashPassword = await bcrypt.hash(password, 10);
 
     const user = new userModel({
       name,
+      username,
       email,
       password: hashPassword,
+      profilePicture,
     });
 
     await user.save();
-
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "3d",
     });
@@ -44,7 +54,7 @@ export const register = async (req, res) => {
       from: process.env.SENDER_EMAIL,
       to: email,
       subject: "Welcome to Name",
-      text: `Welcome to name. Your account has been created with email id: ${email}`,
+      text: `Welcome to Name. Your account has been created with email: ${email}`,
     };
 
     await transporter.sendMail(mailOptions);
@@ -61,18 +71,19 @@ export const login = async (req, res) => {
   if (!email || !password) {
     return res.json({
       success: false,
-      message: "Email and Password are required",
+      message: "Email/Username and Password are required",
     });
   }
 
   try {
-    const user = await userModel.findOne({ email });
+    const user = await userModel.findOne({
+      $or: [{ email: email }, { username: email }],
+    });
     if (!user) {
-      return res.json({ success: false, message: "Invalid email" });
+      return res.json({ success: false, message: "Invalid email/username" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
       return res.json({ success: false, message: "Invalid password" });
     }

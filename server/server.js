@@ -13,15 +13,17 @@ connectDb();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
-
-app.get("/", (req, res) => {
-  res.send("API working");
-});
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on PORT: ${port}`);
+  console.log(`Allowed CORS origin: ${process.env.CLIENT_URL}`);
 });
