@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true, // Ensure username is unique
+    unique: true,
   },
   email: {
     type: String,
@@ -43,6 +43,18 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  // posts: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Post",
+  //   },
+  // ],
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
 });
 
 // Use existing model or create a new one

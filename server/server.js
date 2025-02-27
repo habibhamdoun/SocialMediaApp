@@ -25,5 +25,4 @@ app.use("/api/user", userRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on PORT: ${port}`);
-  console.log(`Allowed CORS origin: ${process.env.CLIENT_URL}`);
 });
