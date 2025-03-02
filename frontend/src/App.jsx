@@ -1,17 +1,26 @@
-import "./App.css";
-import EmailOtpScreen from "./pages/EmailOtpScreen";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import theme from "./theme/theme";
-import { ThemeProvider } from "@mui/material";
-// import Login from './pages/Login';
+import './App.css';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import ResetPassword from './pages/ResetPassword';
+import ResetOTPScreen from './pages/ResetOTPScreen';
+import theme from './theme/theme';
+import { ThemeProvider } from '@mui/material';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import EmailOtpScreen from './pages/EmailOtpScreen';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* <EmailOtpScreen /> */}
-      {/* <Signup /> */}
-      <Login />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/Email-Verification' element={<EmailOtpScreen />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/Reset-Password' element={<ResetPassword />} />
+          <Route path='/Reset-Password-OTP' element={<ResetOTPScreen />} />
+          <Route path='*' element={<Navigate to='/login' replace />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
