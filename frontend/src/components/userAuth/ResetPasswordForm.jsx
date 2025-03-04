@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Button, TextField, Typography, Box } from '@mui/material';
 import { colors, styles } from '../../constants/colors';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ResetPasswordForm = () => {
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -13,6 +15,7 @@ const ResetPasswordForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
+    navigate('/Reset-Password-OTP');
   };
 
   return (
@@ -73,7 +76,6 @@ const ResetPasswordForm = () => {
               value={email}
               onChange={handleChange}
             />
-
             <Box
               sx={{
                 display: 'flex',
@@ -82,6 +84,15 @@ const ResetPasswordForm = () => {
                 width: '100%',
               }}
             ></Box>
+            <Link
+              style={{
+                alignSelf: 'flex-end',
+                fontSize: '0.7rem',
+              }}
+              href='/login'
+            >
+              Login instead?
+            </Link>
             <Box
               sx={{
                 width: '100%',
@@ -90,7 +101,7 @@ const ResetPasswordForm = () => {
             >
               <Button
                 type='submit'
-                disabled={!!email}
+                disabled={!email}
                 fullWidth
                 variant='contained'
                 sx={{ mt: 3, mb: 2 }}
@@ -107,7 +118,8 @@ const ResetPasswordForm = () => {
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
           }}
-          src='../../public/assets/signupimg.jpg'
+          src='/assets/signupimg.jpg'
+          alt='Reset password'
         />
       </Box>
     </Box>
