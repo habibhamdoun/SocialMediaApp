@@ -1,0 +1,18 @@
+header{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 21px;
+}
+
+.pfp{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.details{
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
