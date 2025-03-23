@@ -6,6 +6,8 @@ const theme = createTheme({
     primary: {
       main: colors.primary,
       light: colors.light,
+      white: colors.white,
+      black: colors.black,
     },
     background: {
       default: colors.background,

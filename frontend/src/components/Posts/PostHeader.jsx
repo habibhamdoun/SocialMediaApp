@@ -1,25 +1,48 @@
-import getTimeAgo from "./getTime"
+import { Box, Typography, Avatar } from '@mui/material';
+import { colors } from '../../constants/colors';
+import getTimeAgo from './getTime';
 
-export default function PostHeader(props) {
-    const posts = props.posts
-    const display = posts.map(post => {
+export default function PostHeader({ posts }) {
+  return (
+    <>
+      {posts.map((post) => {
         return (
-            <header key={post.id} className="flex items-center gap-4 mb-5">
-                <img 
-                    className="w-10 h-10 rounded-full" 
-                    src={post.profilePic} 
-                    alt={`${post.username}'s profile picture`} 
-                />
-                <div className="flex items-center gap-1">
-                    <p>{post.username}</p>
-                    <small>{getTimeAgo(post.timestamp)}</small>
-                </div>  
-            </header>
-        )
-    })
-    return (
-        <>
-        {display}
-        </>
-    )
+          <Box
+            key={post.id}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+              mb: 2,
+            }}
+          >
+            <Avatar
+              src={post.profilePic}
+              alt={`${post.username}'s profile picture`}
+              sx={{ width: 40, height: 40 }}
+            />
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography
+                sx={{
+                  color: colors.white,
+                  fontWeight: 'bold',
+                  fontSize: '0.9rem',
+                }}
+              >
+                {post.username}
+              </Typography>
+              <Typography
+                sx={{
+                  color: colors.gray,
+                  fontSize: '0.7rem',
+                }}
+              >
+                {getTimeAgo(post.timestamp)}
+              </Typography>
+            </Box>
+          </Box>
+        );
+      })}
+    </>
+  );
 }
