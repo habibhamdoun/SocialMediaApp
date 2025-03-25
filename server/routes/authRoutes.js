@@ -6,7 +6,6 @@ import {
   register,
   resetPassword,
   sendResetOtp,
-  sendVerifyOtp,
   verifyEmail,
 } from "../controllers/authController.js";
 import userAuth from "../middleware/userAuth.js";
@@ -25,13 +24,14 @@ const upload = multer({ storage });
 
 const authRouter = express.Router();
 
-authRouter.post("/register", upload.single("profilePicture"), register); // Added Multer
+authRouter.post("/register", upload.single("profilePicture"), register);
 authRouter.post("/login", login);
 authRouter.post("/logout", logout);
-authRouter.post("/send-verify-otp", userAuth, sendVerifyOtp);
+
 authRouter.post("/verify-account", userAuth, verifyEmail);
 authRouter.post("/is-auth", userAuth, isAuthenticated);
-authRouter.post("/send-reset-OTP", sendResetOtp);
+
+authRouter.post("/send-reset-otp", sendResetOtp);
 authRouter.post("/reset-password", resetPassword);
 
 export default authRouter;
